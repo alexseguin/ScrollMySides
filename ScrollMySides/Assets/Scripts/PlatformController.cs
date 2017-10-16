@@ -15,12 +15,19 @@ public class PlatformController : RaycastController {
 	// Update is called once per frame
 	void Update () {
         Vector3 velocity = move * Time.deltaTime;
-
-        MovePassengers(ref velocity);
+        UpdateRaycastOrigins();
+        CalculatePassengerMovement(ref velocity);
+        MovePassengers(true);
         transform.Translate(velocity);
-	}
+        MovePassengers(false);
+    }
 
-    void MovePassengers(ref Vector3 velocity)
+    void MovePassengers(bool beforeMovePlatform)
+    {
+
+    }
+
+    void CalculatePassengerMovement(ref Vector3 velocity)
     {
         HashSet<Transform> movedPassengers = new HashSet<Transform>();
 
@@ -101,5 +108,19 @@ public class PlatformController : RaycastController {
         }
     }
 
+    struct PassengerMovement
+    {
+        public Transform transform;
+        public Vector3 velocity;
+        public bool standingOnPlatform;
+        public bool moveBeforePlatform;
 
+        public PassengerMovement(Transform _transform, Vector3 _velocity, bool _standingOnPlatform, bool _moveBeforePlatform)
+        {
+            transform = _transform;
+            velocity = _velocity;
+            standingOnPlatform = _standingOnPlatform;
+            moveBeforePlatform = _moveBeforePlatform;
+        }
+    }
 }
