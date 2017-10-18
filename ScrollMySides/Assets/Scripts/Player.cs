@@ -10,6 +10,10 @@ public class Player : MonoBehaviour {
     public float acceleratioTimeAirborne = .2f;
     public float acceleratioTimeGrounded = .1f;
     public float moveSpeed = 6;
+    public float wallSlideSpeedMax = 3;
+    public Vector2 wallJumpClimb;
+    public Vector2 wallJumpOff;
+    public Vector2 wallLeap;
 
     float jumpVelocity;
     float gravity;
@@ -29,10 +33,25 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        int wallDirX = (controller.collisions.left) ? -1 : 1;
+
+        bool wallSliding = false;
+
+        if(controller.collisions.left || controller.collisions.right && !controller.collisions.below && velocity.y < 0)
+        {
+            wallSliding = true;
+
+            if (velocity.y < -wallSlideSpeedMax)
+            {
+                velocity.y = -wallSlideSpeedMax;
+            }
+        }
+
         if (controller.collisions.above || controller.collisions.below)
             velocity.y = 0;
 
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
             velocity.y = jumpVelocity;
