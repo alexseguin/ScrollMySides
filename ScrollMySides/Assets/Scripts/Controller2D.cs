@@ -25,12 +25,14 @@ public class Controller2D : RaycastController {
         collisions.Reset();
         collisions.velocityOld = velocity;
 
+        if (velocity.x != 0)
+        {
+            collisions.faceDirection = (int)(Mathf.Sign(velocity.x));
+        }
+
         if (velocity.y < 0)
             DescendSlope(ref velocity);
 
-        if (velocity.x != 0) {
-            collisions.faceDirection = (int)(Mathf.Sign(velocity.x));
-        }
 
         HorizontalCollisions(ref velocity);
 
@@ -48,7 +50,7 @@ public class Controller2D : RaycastController {
         float directionX = collisions.faceDirection;
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
 
-        if(Mathf.Sign(velocity.x) < skinWidth)
+        if(Mathf.Abs(velocity.x) < skinWidth)
         {
             rayLength = 2 * skinWidth;
         }

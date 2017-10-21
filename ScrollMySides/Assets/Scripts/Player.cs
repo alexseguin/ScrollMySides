@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     public float acceleratioTimeGrounded = .1f;
     public float moveSpeed = 6;
     public float wallSlideSpeedMax = 3;
+
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
     public Vector2 wallLeap;
@@ -32,14 +33,14 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         int wallDirX = (controller.collisions.left) ? -1 : 1;
-
         bool wallSliding = false;
 
-        if(controller.collisions.left || controller.collisions.right && !controller.collisions.below && velocity.y < 0)
+        if ((controller.collisions.left || controller.collisions.right) && !controller.collisions.below && velocity.y < 0)
         {
             wallSliding = true;
 
@@ -52,9 +53,31 @@ public class Player : MonoBehaviour {
         if (controller.collisions.above || controller.collisions.below)
             velocity.y = 0;
 
-
-        if (Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
-            velocity.y = jumpVelocity;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (wallSliding)
+            {
+                if(wallDirX == input.x)
+                {
+                    print(wallDirX);
+                    print(input.x);
+                    print(wallJumpClimb.x);
+                    velocity.x = -wallDirX * wallJumpClimb.x;
+                    velocity.y = wallJumpClimb.y;
+                } else if(input.x == 0)
+                {
+                    velocity.x = -wallDirX * wallJumpOff.x;
+                    velocity.y = wallJumpOff.y; 
+                } else
+                {
+                    velocity.x = -wallDirX * wallLeap.x;
+                    velocity.y = wallLeap.y;
+                }
+            }
+            if(controller.collisions.below)
+                velocity.y = jumpVelocity;
+        }
+            
 
         float targetVelocityX = input.x * moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ?acceleratioTimeGrounded : acceleratioTimeAirborne);
