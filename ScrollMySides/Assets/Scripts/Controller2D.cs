@@ -57,6 +57,7 @@ public class Controller2D : RaycastController {
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
+            // Going to have to use one of these things for the AI movement on platform corners (and to decide behavior)
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
@@ -197,6 +198,34 @@ public class Controller2D : RaycastController {
         }
     }
 
+    public bool OnEdge(Vector3 velocity)
+    {
+        float directionX = collisions.faceDirection;
+        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+
+        if (Mathf.Abs(velocity.x) < skinWidth)
+        {
+            rayLength = 2 * skinWidth;
+        }
+
+
+        RaycastHit2D hit = new RaycastHit2D();
+
+        for (int i = 0; i < horizontalRayCount; i++)
+        {
+            Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            hit = Physics2D.Raycast(rayOrigin, Vector2.down * directionX, rayLength, collisionMask);
+
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
+            
+        }
+        print(!hit);
+        return !hit;
+        
+        }
+    
 
     public struct CollisionInfo
     {
