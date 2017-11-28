@@ -125,13 +125,13 @@ public class Player : MonoBehaviour {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (velocity.x != 0)
-            lastDirection = Mathf.Sign(velocity.x);
+        if (input.x != 0)
+            lastDirection = Mathf.Sign(input.x);
 
         animator.SetBool("WallslideLeft", (wallSliding && controller.collisions.left));
         animator.SetBool("WallslideRight", (wallSliding && controller.collisions.right));
         animator.SetBool("Walking", walking);
-        animator.SetBool("Crouching", crouching);
+        animator.SetBool("Crouchinge", crouching);
         animator.SetBool("Running", running && input.x != 0);
         animator.SetBool("Jumping", !controller.collisions.below);
         animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
