@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
 
     public float lastDirection;
     private bool running;
-    private bool sneaking;
+    private bool crouching;
     private bool walking;
     private bool jumping;
 
@@ -69,10 +69,9 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jumping = true;
             if (wallSliding)
             {
-                if(wallDirX == input.x)
+                if (wallDirX == input.x)
                 {
                     velocity.x = -wallDirX * wallJumpClimb.x;
                     velocity.y = wallJumpClimb.y;
@@ -90,19 +89,16 @@ public class Player : MonoBehaviour {
                 velocity.y = jumpVelocity;
         }
 
-        if(!Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
-        {
-            jumping = false;
-        }
+        
 
         if (Input.GetKey(KeyCode.LeftShift) && controller.collisions.below)
         {
             running = true;
-            sneaking = false;
+            crouching = false;
             charSpeed = moveSpeed * 2;
         }
-        else if (Input.GetKey(KeyCode.LeftControl) && controller.collisions.below) {
-            sneaking = true;
+        else if (Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift)&& controller.collisions.below) {
+            crouching = true;
             running = false;
             charSpeed = moveSpeed / 3;
         }
@@ -110,7 +106,7 @@ public class Player : MonoBehaviour {
         {
             charSpeed = moveSpeed;
             running = false;
-            sneaking = false;
+            crouching = false;
         }
 
         if (input.x != 0 && controller.collisions.below)
@@ -119,7 +115,6 @@ public class Player : MonoBehaviour {
         }
         else
         {
-            print("test");
             walking = false;
         }
 
@@ -136,8 +131,9 @@ public class Player : MonoBehaviour {
         animator.SetBool("WallslideLeft", (wallSliding && controller.collisions.left));
         animator.SetBool("WallslideRight", (wallSliding && controller.collisions.right));
         animator.SetBool("Walking", walking);
-        animator.SetBool("Running", running);
-        animator.SetBool("Jumping", jumping);
+        animator.SetBool("Crouching", crouching);
+        animator.SetBool("Running", running && input.x != 0);
+        animator.SetBool("Jumping", !controller.collisions.below);
         animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
         animator.SetFloat("LastDir", lastDirection);
     }
