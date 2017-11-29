@@ -131,7 +131,7 @@ public class Player : MonoBehaviour {
         animator.SetBool("WallslideLeft", (wallSliding && controller.collisions.left));
         animator.SetBool("WallslideRight", (wallSliding && controller.collisions.right));
         animator.SetBool("Walking", walking);
-        animator.SetBool("Crouchinge", crouching);
+        animator.SetBool("Crouching", crouching);
         animator.SetBool("Running", running && input.x != 0);
         animator.SetBool("Jumping", !controller.collisions.below);
         animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
