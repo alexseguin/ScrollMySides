@@ -185,7 +185,7 @@ function PlaceWeapon (Item)
 function RemoveWeapon (Item)
 {	if (Item.equippedWeaponVersion != null)
 	{
-		Destroy(WeaponSlot.FindChild(""+Item.equippedWeaponVersion.name).gameObject);
+		Destroy(WeaponSlot.Find(""+Item.equippedWeaponVersion.name).gameObject);
 		if (DebugMode)
 		{
 			Debug.Log(Item.name + " has been removed as weapon");

@@ -181,7 +181,7 @@ class InventoryEditor extends EditorWindow {
 		
 		selected +=  selectedObject.name + " ";
 		
-		if (selectedObject.FindChild("Inventory") != null)
+		if (selectedObject.Find("Inventory") != null)
 		{
 			Debug.LogError("An object called 'Inventory' was already found on " + selected + ". If the Inventory has previously been set up on the selected object (" + selected + ") then make sure to delete it by pressing 'Remove Inventory'.");
 			return;
@@ -319,9 +319,9 @@ class InventoryEditor extends EditorWindow {
 	
 		selected +=  selectedObject.name + " ";
 		
-		if (selectedObject.FindChild("Inventory") != null)
+		if (selectedObject.Find("Inventory") != null)
 		{
-			DestroyImmediate(selectedObject.FindChild("Inventory").gameObject);
+			DestroyImmediate(selectedObject.Find("Inventory").gameObject);
 		}
 		
 		if (selectedObject.GetComponent(Character) != null)

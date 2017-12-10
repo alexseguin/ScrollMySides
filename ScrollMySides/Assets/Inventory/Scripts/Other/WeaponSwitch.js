@@ -39,7 +39,7 @@ function Update ()
 	}
 	if (transform.childCount-1 > maxWeapons)
 	{
-		Destroy(transform.FindChild("Fists").gameObject);
+		Destroy(transform.Find("Fists").gameObject);
 		fistsOnObject = false;
 	}
 	
