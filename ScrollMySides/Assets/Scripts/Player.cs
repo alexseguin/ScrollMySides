@@ -135,6 +135,7 @@ public class Player : MonoBehaviour {
         animator.SetBool("Running", running && input.x != 0);
         animator.SetBool("Jumping", !controller.collisions.below);
         animator.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
+        animator.SetFloat("DirY", Mathf.Sign(velocity.y));
         animator.SetFloat("LastDir", lastDirection);
     }
 }
