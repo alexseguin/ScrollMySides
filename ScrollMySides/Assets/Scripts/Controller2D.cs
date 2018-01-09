@@ -221,7 +221,6 @@ public class Controller2D : RaycastController {
             Debug.DrawRay(rayOrigin, Vector2.right * directionX, Color.red);
             
         }
-        print(!hit);
         return !hit;
         
         }

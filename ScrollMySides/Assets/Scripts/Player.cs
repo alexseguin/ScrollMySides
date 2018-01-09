@@ -39,7 +39,6 @@ public class Player : MonoBehaviour {
         charSpeed = moveSpeed;
         gravity = -(2 * jumpHeight) / (Mathf.Pow(timeToJumpApex, 2));
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
-        print("Gravity: " + gravity + " && JumpVelocity: " + jumpVelocity);
 	}
 	
 	// Update is called once per frame
@@ -120,7 +119,6 @@ public class Player : MonoBehaviour {
 
 
         float targetVelocityX = input.x * charSpeed;
-        print(velocity.x.ToString());
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ?acceleratioTimeGrounded : acceleratioTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
