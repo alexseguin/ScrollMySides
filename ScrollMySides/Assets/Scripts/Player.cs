@@ -40,9 +40,12 @@ public class Player : MonoBehaviour {
         gravity = -(2 * jumpHeight) / (Mathf.Pow(timeToJumpApex, 2));
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+
+
+
+    // Update is called once per frame
+    void Update ()
     {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 

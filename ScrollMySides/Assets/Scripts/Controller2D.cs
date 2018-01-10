@@ -69,6 +69,14 @@ public class Controller2D : RaycastController {
                 if (hit.distance == 0)
                     continue;
 
+
+                var interactor = gameObject.GetComponent<InteractionController>();
+
+                if (interactor != null)
+                {
+                    interactor.OnInteract(hit.collider.gameObject);
+                }
+
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
                 if (i == 0 && slopeAngle <= maxClimbAngle)
@@ -123,6 +131,13 @@ public class Controller2D : RaycastController {
 
                 velocity.y = (hit.distance - skinWidth) * directionY;
                 rayLength = hit.distance;
+
+                var interactor = gameObject.GetComponent<InteractionController>();
+
+                if(interactor != null)
+                {
+                    interactor.OnInteract(hit.collider.gameObject);
+                }
 
                 if (collisions.climbingSlope)
                 {

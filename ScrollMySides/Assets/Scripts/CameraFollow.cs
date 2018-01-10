@@ -22,10 +22,32 @@ public class CameraFollow : MonoBehaviour {
 
     bool lookAheadStopped;
 
+    public float shakeTimer;
+    public float shakeAmount;
+
     // Use this for initialization
     void Start()
     {
         focusArea = new FocusArea(target.collider.bounds, focusAreaSz);
+    }
+
+    private void Update()
+    {
+        if(shakeTimer >= 0)
+        {
+            Vector2 ShakePos = Random.insideUnitCircle * shakeAmount;
+            Transform t = gameObject.GetComponent<Camera>().transform;
+            t.position = new Vector3(t.position.x + ShakePos.x, t.position.y + ShakePos.y, t.position.z);
+
+            shakeTimer -= Time.deltaTime;
+        }
+
+    }
+
+    public void ShakeCamera(float shakePwr, float shakeDur)
+    {
+        shakeTimer = shakeDur;
+        shakeAmount = shakePwr;
     }
 
     private void LateUpdate()

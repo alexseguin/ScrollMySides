@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d4dc4b4b21458dc449e2d6d359533dca
-timeCreated: 1515535612
+timeCreated: 1515562077
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,6 +17,8 @@ TextureImporter:
     21300020: dart_trap
     21300022: relic
     21300024: floor
+    21300026: spikes
+    21300028: dart
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -273,6 +275,32 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 4, y: 5, z: 4, w: 3}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spikes
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 98
+        width: 25
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: dart
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 119
+        width: 5
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
