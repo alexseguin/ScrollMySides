@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractionController : MonoBehaviour {
 
@@ -13,6 +14,17 @@ public class InteractionController : MonoBehaviour {
         {
             Destroy(obj);
             cf.ShakeCamera(0.4f, 4);
+        }
+
+        if (obj.CompareTag("Boulder"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+
+        if (obj.CompareTag("Despawn"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
