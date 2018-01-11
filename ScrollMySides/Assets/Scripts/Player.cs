@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
             crouching = false;
             charSpeed = moveSpeed * 2;
         }
-        else if (Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift)&& controller.collisions.below) {
+        else if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.LeftShift)&& controller.collisions.below) {
             crouching = true;
             running = false;
             charSpeed = moveSpeed / 3;
