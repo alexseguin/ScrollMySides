@@ -16,13 +16,13 @@ public class InteractionController : MonoBehaviour {
             cf.ShakeCamera(0.4f, 4);
         }
 
-        if (obj.CompareTag("Boulder"))
+        if (obj.CompareTag("Elevator"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            obj.GetComponent<ElevatorActivate>().PlayerTrigger();
+            obj.layer = LayerMask.NameToLayer("Default");
         }
 
-
-        if (obj.CompareTag("Despawn"))
+        if (obj.CompareTag("Boulder") || obj.CompareTag("Kill") || obj.CompareTag("Despawn"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

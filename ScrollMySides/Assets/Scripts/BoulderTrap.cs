@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class BoulderTrap : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
     public Transform dest; // drag the destination object here var sound: AudioClip; // define a teleport sound, if you want
     public Transform boulder;
 
@@ -23,9 +18,4 @@ public class BoulderTrap : MonoBehaviour {
 
         }
     }
-
-            // Update is called once per frame
-            void Update () {
-		
-	}
 }

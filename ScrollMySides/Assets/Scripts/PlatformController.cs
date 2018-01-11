@@ -201,6 +201,18 @@ public class PlatformController : RaycastController {
         }
     }
 
+    public float speedOnActivate;
+
+    public void Activate()
+    {
+        speed = speedOnActivate;
+    }
+
+    public void Deactivate()
+    {
+        speed = 0;
+    }
+
     private void OnDrawGizmos()
     {
         if (localWaypoints != null)

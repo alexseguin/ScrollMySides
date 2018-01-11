@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BoulderTrap.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Controller2D.cs" />
+     <Compile Include="Assets\Scripts\ElevatorActivate.cs" />
      <Compile Include="Assets\Scripts\EntityController.cs" />
      <Compile Include="Assets\Scripts\FallDespawn.cs" />
      <Compile Include="Assets\Scripts\InteractionController.cs" />
