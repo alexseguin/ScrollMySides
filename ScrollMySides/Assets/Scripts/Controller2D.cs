@@ -60,8 +60,15 @@ public class Controller2D : RaycastController {
             // Going to have to use one of these things for the AI movement on platform corners (and to decide behavior)
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+            
+            //TODO
+            // Add up/down control array for movement method (crawl/sneak/walk)
+            // Look at collided object bounds if wallsliding and compare to players transform
+            // if player goes above object, attempt climb
+            //      raycast diagonally up, if 
 
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+            
             Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
             if (hit)
